@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+
+  aiogram_bot:
+        container_name: aiogram-bot
+        image: aiogram_bot
+
+        build: .
+
+        environment:
+            - BOT_TOKEN=${BOT_TOKEN}
+            - AI_KEY=${AI_KEY}
+            - ADMINS=${ADMINS}
+
+        ports:
+            - "443:443"
+
+        volumes:
+          - ./logs:/~/aiogram-bot/logs
+
+        restart: on-failure
+
+volumes:
+  logs:
+
+
+# -------------------------------
+# Create and start container:
+# $ export BOT_TOKEN=<BOT_TOKEN>
+# $ export AI_KEY=<AI_KEY>
+# $ export ADMINS=<ADMINS>
+# $ export DCHAT_ID=<DCHAT_ID>
+# $ export SCHAT_ID=<SCHAT_ID>
+# $ docker-compose up -d
+# -------------------------------
+# Stop lifted containers:
+# $ docker-compose stop
+# -------------------------------
+# Start stopped containers
+# $ docker-compose start
+# -------------------------------
+# Stop and delete containers and network:
+# $ docker-compose down
+# -------------------------------
+# Remove image:
+# $ docker rmi aiogram_bot
+# -------------------------------
+# Clear logs:
+# $ sudo rm -rf logs/*

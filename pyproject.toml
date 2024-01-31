@@ -1,0 +1,43 @@
+[tool.poetry]
+authors = ["admin <admin@example.com>"]
+description = "Aiogram-bot"
+name = "iogram-bot"
+version = "0.1.0-alpha"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+openai = "0.27.2"
+aiogram = "2.25.1"
+python-dotenv = "^1.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.10.1"
+coverage = "^7.3.2"
+httpx = "^0.25.1"
+pre-commit = "^3.5.0"
+pytest = "^7.4.3"
+pytest-asyncio = "^0.21.1"
+ruff = "^0.1.4"
+
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+
+[tool.pytest.ini_options]
+addopts = "-v"
+asyncio_mode = "auto"
+filterwarnings = [
+    # Passlib 1.7.4 depends on crypt - https://foss.heptapod.net/python-libs/passlib/-/issues/148
+    "ignore:'crypt' is deprecated and slated for removal",
+]
+markers = ["pytest.mark.asyncio"]
+minversion = "6.0"
+testpaths = ["app/tests"]
+
+[tool.ruff]
+target-version = "py311"
+# pycodestyle, pyflakes, isort, pylint, pyupgrade
+select = ["E", "W", "F", "I", "PL", "UP"]
+ignore = ["E501"]
